@@ -38,6 +38,8 @@ public class BookDAOJpaImpl implements BookDAO {
 
     @Override
     public void deleteById(int id) {
+        Book tempBook = entityManager.find(Book.class, id);
 
+        entityManager.remove(tempBook);
     }
 }

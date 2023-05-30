@@ -34,6 +34,7 @@ public class BookServiceImpl implements BookService {
         return bookDAO.save(book);
     }
 
+    @Transactional
     @Override
     public void deleteById(int id) {
         bookDAO.deleteById(id);

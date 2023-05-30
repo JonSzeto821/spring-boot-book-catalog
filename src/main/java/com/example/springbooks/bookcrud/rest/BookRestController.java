@@ -48,7 +48,18 @@ public class BookRestController {
         return dbBook;
     }
 
-    //TODO create endpoint to delete book by id
+    @DeleteMapping("/books/{bookId}")
+    public String deleteById(@PathVariable int bookId) {
+        Book tempBook = bookService.findById(bookId);
+
+        if (tempBook == null) {
+            throw new RuntimeException("Book ID: " + bookId + " does not exist");
+        }
+
+        bookService.deleteById(bookId);
+
+        return tempBook.getTitle() + " has been removed from the library";
+    }
 
     //TODO create endpoint to update book
 }
