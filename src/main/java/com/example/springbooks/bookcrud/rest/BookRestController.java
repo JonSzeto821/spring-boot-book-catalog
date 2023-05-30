@@ -43,9 +43,8 @@ public class BookRestController {
         }
 
         theBook.setId(0);
-        Book dbBook = bookService.save(theBook);
 
-        return dbBook;
+        return bookService.save(theBook);
     }
 
     @DeleteMapping("/books/{bookId}")
@@ -61,5 +60,12 @@ public class BookRestController {
         return tempBook.getTitle() + " has been removed from the library";
     }
 
-    //TODO create endpoint to update book
+    @PutMapping("/books")
+    public Book updateBookDetails(@RequestBody Book theBook) {
+        if (theBook == null) {
+            throw new RuntimeException("Please provide employee information!");
+        }
+
+        return bookService.save(theBook);
+    }
 }
