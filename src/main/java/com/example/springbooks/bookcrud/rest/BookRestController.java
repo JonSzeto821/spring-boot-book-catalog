@@ -3,10 +3,7 @@ package com.example.springbooks.bookcrud.rest;
 import com.example.springbooks.bookcrud.entity.Book;
 import com.example.springbooks.bookcrud.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -39,7 +36,17 @@ public class BookRestController {
         return book;
     }
 
-    //TODO create endpoint to save new book
+    @PostMapping("/books")
+    public Book saveBook(@RequestBody Book theBook) {
+        if (theBook == null) {
+            throw new RuntimeException("Please provide book details!");
+        }
+
+        theBook.setId(0);
+        Book dbBook = bookService.save(theBook);
+
+        return dbBook;
+    }
 
     //TODO create endpoint to delete book by id
 

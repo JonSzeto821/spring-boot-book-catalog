@@ -4,6 +4,7 @@ import com.example.springbooks.bookcrud.dao.BookDAO;
 import com.example.springbooks.bookcrud.entity.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -25,5 +26,16 @@ public class BookServiceImpl implements BookService {
     @Override
     public Book findById(int id) {
         return bookDAO.findById(id);
+    }
+
+    @Transactional
+    @Override
+    public Book save(Book book) {
+        return bookDAO.save(book);
+    }
+
+    @Override
+    public void deleteById(int id) {
+        bookDAO.deleteById(id);
     }
 }

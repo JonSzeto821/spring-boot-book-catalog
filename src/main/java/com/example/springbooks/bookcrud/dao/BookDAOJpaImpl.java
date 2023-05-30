@@ -29,4 +29,15 @@ public class BookDAOJpaImpl implements BookDAO {
     public Book findById(int theId) {
         return entityManager.find(Book.class, theId);
     }
+
+    @Override
+    public Book save(Book book) {
+        Book dbBook = entityManager.merge(book);
+        return dbBook;
+    }
+
+    @Override
+    public void deleteById(int id) {
+
+    }
 }
