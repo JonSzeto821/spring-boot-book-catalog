@@ -12,8 +12,6 @@ import java.util.Optional;
 @Service
 public class BookServiceImpl implements BookService {
 
-//    private final BookDAO bookDAO;
-
     private BookRepository bookRepository;
     @Autowired
     public BookServiceImpl(BookRepository theBookRepository) {
