@@ -16,6 +16,29 @@
         <h3>Book Directory</h3>
         <hr>
 
+        <table>
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Isbn</th>
+                    <th>Publisher</th>
+                    <th>Publication Year</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr th:each="book : ${books}">
+
+                    <td th:text="${book.title}" />
+                    <td th:text="${book.author}" />
+                    <td th:text="${book.isbn}" />
+                    <td th:text="${book.publisher}" />
+                    <td th:text="${book.publicationYear}" />
+
+                </tr>
+            </tbody>
+        </table>
     </div>
 
 </body>
