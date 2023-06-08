@@ -1,7 +1,6 @@
 package com.example.springbooks.bookcrud.service;
 
 import com.example.springbooks.bookcrud.entity.Book;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
