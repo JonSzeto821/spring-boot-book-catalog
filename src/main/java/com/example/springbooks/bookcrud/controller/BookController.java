@@ -5,6 +5,8 @@ import com.example.springbooks.bookcrud.service.BookService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -27,5 +29,24 @@ public class BookController {
         theModel.addAttribute("books", theBooks);
 
         return "books/list-books";
+    }
+
+    @GetMapping("/showFormToAddBook")
+    public String showFormToAddBook(Model theModel) {
+        // create new model attribute to bind form data
+        Book theNewBook = new Book();
+
+        theModel.addAttribute("book", theNewBook);
+
+        return "books/book-form";
+    }
+
+    @PostMapping("/save")
+    public String saveBook(@ModelAttribute("book") Book theBook) {
+        //capture the user input information into a new book object and save
+        bookService.save(theBook);
+
+        //send the user back to the book list screen upon form submit
+        return "redirect:/books/list";
     }
 }
