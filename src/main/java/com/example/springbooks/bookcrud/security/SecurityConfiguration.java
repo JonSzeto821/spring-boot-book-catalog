@@ -14,10 +14,22 @@ public class SecurityConfiguration {
         UserDetails admin = User.builder()
                 .username("admin")
                 .password("{noop}admin")
-                .roles("ADMIN")
+                .roles("EMPLOYEE", "ADMIN")
                 .build();
 
-        return new InMemoryUserDetailsManager(admin);
+        UserDetails alexis = User.builder()
+                .username("alexis")
+                .password("{noop}supersecretpassword123")
+                .roles("EMPLOYEE")
+                .build();
+
+        UserDetails kephren = User.builder()
+                .username("kephren")
+                .password("{noop}supersecretpassword123")
+                .roles("EMPLOYEE", "MANAGER")
+                .build();
+
+        return new InMemoryUserDetailsManager(admin, alexis, kephren);
     }
 
 }
