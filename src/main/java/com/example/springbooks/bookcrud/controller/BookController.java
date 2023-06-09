@@ -47,7 +47,6 @@ public class BookController {
         return "redirect:/books/list";
     }
 
-    //TODO create method to update an existing book
     @GetMapping("/showFormForUpdate")
     public String updateBookDetails(@RequestParam("bookId") int id, Model theModel) {
         // get the book by id from the service layer
@@ -60,5 +59,10 @@ public class BookController {
         return "books/book-form";
     }
 
-    //TODO create method to delete an existing book
+    @GetMapping("/deleteBook")
+    public String deleteBook(@RequestParam("bookId") int id) {
+        bookService.deleteById(id);
+
+        return "redirect:/books/list";
+    }
 }
