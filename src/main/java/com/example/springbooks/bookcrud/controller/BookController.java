@@ -4,10 +4,7 @@ import com.example.springbooks.bookcrud.entity.Book;
 import com.example.springbooks.bookcrud.service.BookService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -49,4 +46,19 @@ public class BookController {
         //send the user back to the book list screen upon form submit
         return "redirect:/books/list";
     }
+
+    //TODO create method to update an existing book
+    @GetMapping("/showFormForUpdate")
+    public String updateBookDetails(@RequestParam("bookId") int id, Model theModel) {
+        // get the book by id from the service layer
+        Book book = bookService.findById(id);
+
+        // set the employee in the model to populate the form fields
+        theModel.addAttribute("book", book);
+
+        //send user to the form
+        return "books/book-form";
+    }
+
+    //TODO create method to delete an existing book
 }

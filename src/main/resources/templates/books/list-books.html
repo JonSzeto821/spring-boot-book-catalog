@@ -28,6 +28,7 @@
                     <th>Isbn</th>
                     <th>Publisher</th>
                     <th>Publication Year</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
 
@@ -39,6 +40,9 @@
                     <td th:text="${book.isbn}" />
                     <td th:text="${book.publisher}" />
                     <td th:text="${book.publicationYear}" />
+                    <td>
+                        <a th:href="@{/books/showFormForUpdate(bookId=${book.id})}">Edit</a>
+                    </td>
 
                 </tr>
             </tbody>
