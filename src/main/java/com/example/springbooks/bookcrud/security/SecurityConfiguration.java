@@ -16,22 +16,28 @@ public class SecurityConfiguration {
         UserDetails admin = User.builder()
                 .username("admin")
                 .password("{noop}admin")
-                .roles("EMPLOYEE", "ADMIN")
+                .roles("MEMBER", "ADMIN")
                 .build();
 
         UserDetails alexis = User.builder()
                 .username("alexis")
                 .password("{noop}supersecretpassword123")
-                .roles("EMPLOYEE")
+                .roles("MEMBER")
                 .build();
 
-        UserDetails kephren = User.builder()
-                .username("kephren")
+        UserDetails fabinho = User.builder()
+                .username("fabinho")
                 .password("{noop}supersecretpassword123")
-                .roles("EMPLOYEE", "MANAGER")
+                .roles("MEMBER", "AUTHOR")
                 .build();
 
-        return new InMemoryUserDetailsManager(admin, alexis, kephren);
+        UserDetails harvey = User.builder()
+                .username("harvey")
+                .password("{noop}supersecretpassword123")
+                .roles("TRIAL_USER")
+                .build();
+
+        return new InMemoryUserDetailsManager(admin, alexis, fabinho, harvey);
     }
 
     @Bean
@@ -40,6 +46,9 @@ public class SecurityConfiguration {
         // restrict access based on the http request
         httpSecurity.authorizeHttpRequests(configurer ->
                 configurer
+                        .requestMatchers("/").hasRole("MEMBER")
+                        .requestMatchers("/books/authors/**").hasAnyRole("AUTHOR", "ADMIN")
+                        .requestMatchers("/books/admin/**").hasRole("ADMIN")
                         .anyRequest()
                         .authenticated()
         )

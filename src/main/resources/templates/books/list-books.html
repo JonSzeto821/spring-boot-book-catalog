@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+                xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
     <!-- Required meta tags -->
@@ -14,6 +15,17 @@
     <div class="container">
 
         <h3>Book Directory</h3>
+        <h4>Hi, <span sec:authentication="principal.username"></span>! You have the access level: <span sec:authentication="principal.authorities"></span></h4>
+        <hr>
+
+        <div>
+            <a th:href="@{/books/authors}">Author access</a>
+        </div>
+        <hr>
+
+        <div>
+            <a th:href="@{/books/admin}">Admin access</a>
+        </div>
         <hr>
 
         <div>
@@ -53,6 +65,7 @@
                 </tr>
             </tbody>
         </table>
+
     </div>
 
 </body>

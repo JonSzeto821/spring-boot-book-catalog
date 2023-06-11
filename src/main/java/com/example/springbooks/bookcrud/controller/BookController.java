@@ -65,4 +65,16 @@ public class BookController {
 
         return "redirect:/books/list";
     }
+
+    @GetMapping("/authors")
+    public String showAuthorsPage() {
+
+        return "books/authors";
+    }
+
+    @GetMapping("/admin")
+    public String showAdminPage() {
+
+        return "books/admin";
+    }
 }
