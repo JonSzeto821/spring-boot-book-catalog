@@ -18,15 +18,13 @@
         <h4>Hi, <span sec:authentication="principal.username"></span>! You have the access level: <span sec:authentication="principal.authorities"></span></h4>
         <hr>
 
-        <div>
+        <div sec:authorize="hasRole('AUTHOR')">
             <a th:href="@{/books/authors}">Author access</a>
         </div>
-        <hr>
 
-        <div>
+        <div sec:authorize="hasRole('ADMIN')">
             <a th:href="@{/books/admin}">Admin access</a>
         </div>
-        <hr>
 
         <div>
             <a th:href="@{/books/showFormToAddBook}">Add book</a>
